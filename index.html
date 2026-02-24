@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wagner Lima | Primeira Oportunidade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            /* Deixei o painel um pouco mais transparente pra imagem de fundo aparecer de leve */
+            --bg-panel: rgba(22, 27, 34, 0.95); 
+            --text-main: #c9d1d9;
+            --text-terminal: #56d364;
+            --accent: #58a6ff;
+            --border-color: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* imagem de fundo */
+            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop'); /* Puxei a imagem do unsplash */
+            background-size: cover;       /* Pra cobrir a tela toda sem esticar */
+            background-position: center;  /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Não deixa repetir tipo azulejo */
+            background-attachment: fixed; /* O fundo fica parado enquanto a página rola (efeito parallax sutil) */
+            
+            background-color: var(--bg-dark); /* Uma cor de fundo de backup caso a imagem demore pra carregar */
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px; /* Um respiro nas bordas pra telas menores */
+        }
+
+        .os-window {
+            width: 100%; /* Ocupa a largura disponível */
+            max-width: 1200px;
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            /* Adicionei um "backdrop-filter" pra borrar o fundo atrás da janela, fica moderno! */
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); /* Pra funcionar no Safari tbm */
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); /* Sombra um pouco mais forte pra destacar do fundo */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .window-header {
+            background-color: rgba(1, 4, 9, 0.9); /* Header tbm um pouco transparente */
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot.red { background-color: #ff5f56; }
+        .dot.yellow { background-color: #ffbd2e; }
+        .dot.green { background-color: #27c93f; }
+
+        .window-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        .terminal-section {
+            flex: 1;
+            min-width: 300px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .prompt {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .typewriter {
+            color: var(--text-terminal);
+            border-right: 2px solid var(--text-terminal);
+            white-space: pre-wrap;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .projects-section {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .projects-section h2 {
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .project-card {
+            background-color: rgba(13, 17, 23, 0.6); /* Cards mais transparentes pra dar profundidade */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, border-color 0.2s, background-color 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background-color: rgba(13, 17, 23, 0.8); /* Fica um pouco mais sólido quando passa o mouse */
+        }
+
+        .project-card h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 15px;
+            background-color: #238636;
+            color: #fff;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.2s;
+            background-color: rgba(22, 27, 34, 0.6); /* Botões com transparência tbm */
+        }
+
+        .social-links a:hover {
+            background-color: var(--text-main);
+            color: var(--bg-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="os-window">
+        <div class="window-header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+
+        <div class="window-content">
+            <div class="terminal-section">
+                <div class="prompt">guest@wagner-lima:~$ ./iniciar_perfil.sh</div>
+                <div id="typewriter-text" class="typewriter"></div>
+                
+                <div class="social-links" style="opacity: 0; transition: opacity 1s;" id="socials">
+                    <a href="https://www.linkedin.com/in/wagner-matos-de-lima/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/limawagner33" target="_blank">GitHub</a>
+                    <a href="mailto:wagnerlima10444@gmail.com">E-mail</a>
+                </div>
+            </div>
+
+            <div class="projects-section" style="opacity: 0; transition: opacity 1s;" id="projects">
+                <h2>&gt; Processos Ativos (Projetos)</h2>
+
+                <div class="project-card">
+                    <a href="https://github.com/limawagner33/projeto-helpdesk-salesforce" target="_blank"><h3>Sistema de Helpdesk Inteligente</h3></a>
+                    <p>Desenvolvimento Full-Stack em nuvem para automação de SLA e gestão de chamados. Arquitetura orientada a negócios e dados, impedindo gargalos operacionais e perda de histórico de resoluções.</p>
+                    <div class="tags">
+                        <span class="tag">Salesforce</span>
+                        <span class="tag">Apex</span>
+                        <span class="tag">LWC</span>
+                        <span class="tag">Flows</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a href="https://github.com/limawagner33/visualizador_de_algoritmos" target="_blank"><h3>Visualizador de Algoritmos</h3></a>
+                    <p>Aplicação interativa para renderizar e demonstrar o funcionamento de algoritmos de ordenação em tempo real, focada no domínio de estrutura de dados e performance.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Lógica</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a href="https://github.com/limawagner33/Analise_de_Churn_e_Retencao_de_Clientes_Projeto_Power_BI" target="_blank"><h3>Dashboard de Análise de Churn</h3></a>
+                    <p>Projeto focado em BI e inteligência de negócios. Mapeamento, tratamento e visualização de dados voltados para retenção de clientes e análise de métricas operacionais.</p>
+                    <div class="tags">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Análise de Dados</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const textToType = `> Inicializando perfil do candidato...\n> Nome: Wagner Lima\n> Localização: Rio de Janeiro, RJ\n> Formação: Ciência da Computação (8/8)\n\n> STATUS: Conhecimento da área administrativa e agora se aprofundando na área da tecnologia.\n\n> Resumo:\nAliando a visão estratégica e de processos da rotina administrativa que adquiri como bagagem na (FAETEC), mais a lógica e arquitetura do desenvolvimento de software estudados na faculdade. Foco em resolver problemas de negócio através de código limpo e sistemas escaláveis.\n\n> Carregando repositórios... [OK]`;
+        
+        const speed = 30;
+        let i = 0;
+
+        function typeWriter() {
+            if (i < textToType.length) {
+                document.getElementById("typewriter-text").innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                document.getElementById("socials").style.opacity = "1";
+                document.getElementById("projects").style.opacity = "1";
+                
+                console.log("%cOlá, Recrutador! O código fonte deste portfólio está lá no meu GitHub. Vamos tomar um café?", "color: #56d364; font-size: 14px; font-weight: bold;");
+            }
+        }
+
+        window.onload = () => {
+            setTimeout(typeWriter, 500); 
+        };
+    </script>
+</body>
+</html>
