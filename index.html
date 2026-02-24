@@ -9,7 +9,7 @@
     <style>
         :root {
             --bg-dark: #0d1117;
-            /* Deixei o painel um pouco mais transparente pra imagem de fundo aparecer de leve */
+            /* Deixa o painel um pouco mais transparente pra imagem de fundo aparecer de leve */
             --bg-panel: rgba(22, 27, 34, 0.95); 
             --text-main: #c9d1d9;
             --text-terminal: #56d364;
@@ -25,7 +25,7 @@
 
         body {
             /* imagem de fundo */
-            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop'); /* Puxei a imagem do unsplash */
+            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop'); /* Puxa a imagem do unsplash */
             background-size: cover;       /* Pra cobrir a tela toda sem esticar */
             background-position: center;  /* Centraliza a imagem */
             background-repeat: no-repeat; /* Não deixa repetir tipo azulejo */
@@ -48,7 +48,7 @@
             max-width: 1200px;
             background-color: var(--bg-panel);
             border: 1px solid var(--border-color);
-            /* Adicionei um "backdrop-filter" pra borrar o fundo atrás da janela, fica moderno! */
+            /* Adiciona um "backdrop-filter" pra borrar o fundo atrás da janela, deixa moderno! xD */
             backdrop-filter: blur(10px); 
             -webkit-backdrop-filter: blur(10px); /* Pra funcionar no Safari tbm */
             border-radius: 10px;
@@ -170,6 +170,41 @@
         .social-links a:hover {
             background-color: var(--text-main);
             color: var(--bg-dark);
+        }
+        /* --- RESPONSIVIDADE MOBILE (Media Queries) --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px; /* Reduz o respiro nas bordas pra dar mais espaço à janela */
+            }
+
+            .window-content {
+                padding: 20px; /* Menos espaço interno na tela do celular */
+                gap: 20px;
+                flex-direction: column; /* Força tudo a ficar em uma coluna única */
+            }
+
+            .terminal-section, .projects-section {
+                width: 100%;
+                min-width: unset; /* Tira a largura mínima pra não espremer no celular */
+            }
+
+            .terminal-section {
+                font-size: 0.9rem; /* Fonte um pouquinho menor pra caber mais texto */
+            }
+
+            .projects-section h2 {
+                font-size: 1.2rem;
+                margin-top: 10px;
+            }
+
+            .project-card {
+                padding: 15px;
+            }
+
+            .social-links {
+                flex-wrap: wrap; /* Se a tela for muito fina, os botões descem de linha */
+                justify-content: center;
+            }
         }
     </style>
 </head>
